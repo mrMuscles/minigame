@@ -1,6 +1,6 @@
 package com.professoreno.mc.minigame.customenemies;
 
-import com.professoreno.mc.minigame.customgoals.fastRangedBowAttackGoal;
+import com.professoreno.mc.minigame.customgoals.FastRangedBowAttackGoal;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.Difficulty;
 import net.minecraft.world.InteractionHand;
@@ -25,7 +25,7 @@ public class CustomSkeleton extends Skeleton {
     }
     // everything here is copied and pasted from AbstractSkeleton, but with @Override added to both reassessWeaponGoal and performRangedAttack
     // our custom goal "fastRangedBowAttackGoal" instead of "RangedBowAttackGoal"
-    // and it removes meleeAttackGoal, because of wierd errors / we don't need a melee skeleton yet
+    // and it removes meleeAttackGoal, because of weird errors / we don't need a melee skeleton yet
     // all other behavior is inherited
     // registerGoals works, but isn't necessary for now
     /*
@@ -48,7 +48,7 @@ public class CustomSkeleton extends Skeleton {
      */
 
 
-    private final fastRangedBowAttackGoal<AbstractSkeleton> bowGoal = new fastRangedBowAttackGoal(this, 1.0, 1, 15.0F);
+    private final FastRangedBowAttackGoal<AbstractSkeleton> bowGoal = new FastRangedBowAttackGoal(this, 1.0, 1, 15.0F);
 
     @Override
     public void reassessWeaponGoal() {

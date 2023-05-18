@@ -1,6 +1,7 @@
 package com.professoreno.mc.minigame;
 
 import com.professoreno.mc.minigame.customenemies.CustomSkeleton;
+import com.professoreno.mc.minigame.customenemies.CustomWither;
 import net.md_5.bungee.api.ChatMessageType;
 import net.md_5.bungee.api.chat.TextComponent;
 import net.minecraft.server.level.ServerLevel;
@@ -49,14 +50,13 @@ public class Events extends BukkitRunnable implements Listener {
         //wrld.tryAddFreshEntityWithPassengers(entity);
 
         org.bukkit.inventory.ItemStack bow = new ItemStack(Material.BOW);
-        for (int i = 0; i < 1; i++) {
-            //CustomWither witherEntity = new CustomWither(location);
 
+        for (int i = 0; i < 1; i++) {
+            CustomWither witherEntity = new CustomWither(location);
+            wrld.tryAddFreshEntityWithPassengers(witherEntity);
             // creates instance of customSkeleton at location
             CustomSkeleton skeletonEntity = new CustomSkeleton(location);
-
             // reflection stuff, kept around just to see how it works, no longer necessary
-
 //
 //            try {
 //                // java reflection

@@ -12,7 +12,7 @@ import java.util.EnumSet;
 
 // only difference between fastRangedBowAttackGoal and RangedBowAttackGoal is var5 > 20 is replaced with 21 > 20, always evaluating to true
 // we should probably attempt to understand this more if we plan to use it, or just make custom goals
-public class fastRangedBowAttackGoal<T extends Monster & RangedAttackMob> extends Goal {
+public class FastRangedBowAttackGoal<T extends Monster & RangedAttackMob> extends Goal {
 
     private final T mob;
     private final double speedModifier;
@@ -24,7 +24,7 @@ public class fastRangedBowAttackGoal<T extends Monster & RangedAttackMob> extend
     private boolean strafingBackwards;
     private int strafingTime = -1;
 
-    public fastRangedBowAttackGoal(T var0, double var1, int var3, float var4) {
+    public FastRangedBowAttackGoal(T var0, double var1, int var3, float var4) {
         this.mob = var0;
         this.speedModifier = var1;
         this.attackIntervalMin = var3;
