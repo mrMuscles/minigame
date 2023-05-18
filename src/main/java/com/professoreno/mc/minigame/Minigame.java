@@ -3,6 +3,7 @@ package com.professoreno.mc.minigame;
 import org.bukkit.plugin.java.JavaPlugin;
 
 public final class Minigame extends JavaPlugin {
+    // small minigame for fun
 
     @Override
     public void onEnable() {
