@@ -1,0 +1,12 @@
+com\professoreno\mc\minigame\helperentities\TargetZombie.class
+com\professoreno\mc\minigame\customgoals\CustomGoal.class
+com\professoreno\mc\minigame\customenemies\CustomWither.class
+com\professoreno\mc\minigame\customgoals\FastRangedBowAttackGoal.class
+com\professoreno\mc\minigame\customgoals\FastRangedAttackGoal.class
+com\professoreno\mc\minigame\customenemies\CustomZombie.class
+com\professoreno\mc\minigame\Events.class
+com\professoreno\mc\minigame\commands\SpawnForTesting.class
+com\professoreno\mc\minigame\customenemies\TestSkeleton.class
+com\professoreno\mc\minigame\Minigame.class
+com\professoreno\mc\minigame\utilities\SpawnEntity.class
+com\professoreno\mc\minigame\customenemies\CustomSkeleton.class
