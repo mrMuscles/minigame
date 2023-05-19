@@ -2,3 +2,7 @@ name: Minigame
 version: '${project.version}'
 main: com.professoreno.mc.minigame.Minigame
 api-version: 1.19
+commands:
+  minigamespawn:
+    description: spawns custom entities
+    usage: /minigamespawn [customentity] [amount]

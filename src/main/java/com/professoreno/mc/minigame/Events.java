@@ -16,6 +16,8 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.potion.PotionEffect;
+import org.bukkit.potion.PotionEffectType;
 import org.bukkit.scheduler.BukkitRunnable;
 
 import java.util.HashMap;
@@ -26,7 +28,6 @@ public class Events extends BukkitRunnable implements Listener {
     // hashMap for our custom player health,
     private static HashMap<Player, Integer> pHealth = new HashMap<>();
 
-    // this was an old
     /*public static HashMap<Player, Integer> getpHealth() {
         return pHealth;
     }
@@ -39,23 +40,27 @@ public class Events extends BukkitRunnable implements Listener {
         pHealth.put(player, 1000);
         // gets player health and shows it above action bar
         player.spigot().sendMessage(ChatMessageType.ACTION_BAR, new TextComponent(pHealth.get(player) + " / 1000"));
+        PotionEffect p = new PotionEffect(PotionEffectType.DAMAGE_RESISTANCE, 1000000, 200, false, false);
+        player.addPotionEffect(p);
+
+        // Most of the stuff commented out below has been moved to SpawnForTesting for now
         // these are required to spawn entity, just gets player world and casts to craftbukkit ServerLevel
-        ServerLevel wrld = ((CraftWorld) player.getWorld()).getHandle();
+//        ServerLevel wrld = ((CraftWorld) player.getWorld()).getHandle();
         // location can be replaced with whatever location you want, just did player for now
-        Location location = player.getLocation();
+//        Location location = player.getLocation();
         // example location:
         //Location location = new Location(player.getWorld(), 0.0, 0.0, 0.0);
 
         //CustomZombie entity = new CustomZombie(player.getLocation());
         //wrld.tryAddFreshEntityWithPassengers(entity);
 
-        org.bukkit.inventory.ItemStack bow = new ItemStack(Material.BOW);
+//        org.bukkit.inventory.ItemStack bow = new ItemStack(Material.BOW);
 
-        for (int i = 0; i < 1; i++) {
-            CustomWither witherEntity = new CustomWither(location);
-            wrld.tryAddFreshEntityWithPassengers(witherEntity);
-            // creates instance of customSkeleton at location
-            CustomSkeleton skeletonEntity = new CustomSkeleton(location);
+//        for (int i = 0; i < 1; i++) {
+//            CustomWither witherEntity = new CustomWither(location);
+//            wrld.tryAddFreshEntityWithPassengers(witherEntity);
+//            // creates instance of customSkeleton at location
+//            CustomSkeleton skeletonEntity = new CustomSkeleton(location);
             // reflection stuff, kept around just to see how it works, no longer necessary
 //
 //            try {
@@ -98,15 +103,16 @@ public class Events extends BukkitRunnable implements Listener {
 //            }
 
             // this is how I use less nms to give entity a bow and change name, less reliance on nms is better
-            Entity bEntity = skeletonEntity.getBukkitEntity();
-            LivingEntity livingEntity = (LivingEntity) bEntity;
-            livingEntity.getEquipment().setItemInMainHand(bow);
-            bEntity.setCustomNameVisible(true);
-            bEntity.setCustomName("§cCustomNameHere");
-            wrld.tryAddFreshEntityWithPassengers(skeletonEntity);
-        }
+//            Entity bEntity = skeletonEntity.getBukkitEntity();
+//            LivingEntity livingEntity = (LivingEntity) bEntity;
+//            livingEntity.getEquipment().setItemInMainHand(bow);
+//            bEntity.setCustomNameVisible(true);
+//            bEntity.setCustomName("§cCustomNameHere");
+//            wrld.tryAddFreshEntityWithPassengers(skeletonEntity);
+//        }
     }
     // removes from hashmap after player leaves
+
     @EventHandler
     public void healthUnSetup(PlayerQuitEvent event) {
         Player player = event.getPlayer();

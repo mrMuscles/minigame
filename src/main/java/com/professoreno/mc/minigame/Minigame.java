@@ -1,5 +1,6 @@
 package com.professoreno.mc.minigame;
 
+import com.professoreno.mc.minigame.commands.SpawnForTesting;
 import org.bukkit.plugin.java.JavaPlugin;
 
 public final class Minigame extends JavaPlugin {
@@ -11,6 +12,7 @@ public final class Minigame extends JavaPlugin {
         getServer().getPluginManager().registerEvents(new Events(), this);
         //new UpdateActionBar().runTaskTimer(this, 0, 20);
         new Events().runTaskTimer(this, 0, 20);
+        this.getCommand("minigamespawn").setExecutor(new SpawnForTesting());
     }
 
     @Override
