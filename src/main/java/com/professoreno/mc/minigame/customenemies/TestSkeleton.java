@@ -11,6 +11,7 @@ import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.monster.AbstractSkeleton;
 import net.minecraft.world.entity.monster.Creeper;
+import net.minecraft.world.entity.monster.Skeleton;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.Level;
@@ -23,7 +24,7 @@ import org.bukkit.event.entity.EntityTransformEvent;
 // looking at the bytecode, it seems access is not possible and was purposefully removed, at least I'm pretty sure
 // might be worth modifying the bytecode to add access, or recompile the .class to make getStepSound public
 
-public abstract class TestSkeleton extends AbstractSkeleton {
+abstract public class TestSkeleton extends AbstractSkeleton {
     private static final int TOTAL_CONVERSION_TIME = 300;
     public static final EntityDataAccessor<Boolean> DATA_STRAY_CONVERSION_ID;
     public static final String CONVERSION_TAG = "StrayConversionTime";

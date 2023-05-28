@@ -23,10 +23,12 @@ public class CustomSkeleton extends Skeleton {
         super(EntityType.SKELETON, ((CraftWorld) loc.getWorld()).getHandle());
         this.setPos(loc.getX(), loc.getY(), loc.getZ());
     }
-    // everything here is copied and pasted from AbstractSkeleton, but with @Override added to both reassessWeaponGoal and performRangedAttack
+    // everything here is copied and pasted from AbstractSkeleton except the following,
+    // @Override added to both reassessWeaponGoal and performRangedAttack with minimal changed to use custom goal
     // our custom goal "fastRangedBowAttackGoal" instead of "RangedBowAttackGoal"
     // and it removes meleeAttackGoal, because of weird errors / we don't need a melee skeleton yet
     // all other behavior is inherited
+    //
     // registerGoals works, but isn't necessary for now
     /*
     @Override
@@ -36,7 +38,7 @@ public class CustomSkeleton extends Skeleton {
         this.goalSelector.addGoal(3, new AvoidEntityGoal(this, Wolf.class, 6.0F, 1.0, 1.2));
         this.goalSelector.addGoal(5, new WaterAvoidingRandomStrollGoal(this, 1.0));
 
-        //this.goalSelector.addGoal(1, new CustomGoal(this, Player.class, 8.0F));
+        this.goalSelector.addGoal(1, new CustomGoal(this, Player.class, 8.0F));
         this.goalSelector.addGoal(6, new LookAtPlayerGoal(this, Player.class, 8.0F));
         this.goalSelector.addGoal(6, new RandomLookAroundGoal(this));
         this.targetSelector.addGoal(1, new HurtByTargetGoal(this, new Class[0]));
@@ -63,7 +65,6 @@ public class CustomSkeleton extends Skeleton {
 
                 this.bowGoal.setMinAttackInterval(b0);
                 this.goalSelector.addGoal(4, this.bowGoal);
-            } else {
             }
         }
     }
