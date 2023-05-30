@@ -2,6 +2,7 @@ package com.professoreno.mc.minigame.commands;
 
 import com.professoreno.mc.minigame.utilities.SpawnEntity;
 import org.bukkit.ChatColor;
+import org.bukkit.Location;
 import org.bukkit.command.*;
 import org.bukkit.entity.Player;
 import org.jetbrains.annotations.NotNull;
@@ -43,6 +44,16 @@ public class SpawnForTesting implements TabExecutor {
                     // player did not provide a number
                     return false;
                 }
+
+                if (amount > 1000) {
+                    // no reason ever during testing should we go above this
+                    return false;
+                }
+                if (amount < 1) {
+                    // no reason to call with amount of zero or below
+                    return false;
+                }
+
                 new SpawnEntity(player, entity, amount);
                 return true;
                 }

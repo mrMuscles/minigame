@@ -1,47 +1,39 @@
 package com.professoreno.mc.minigame;
 
-import com.professoreno.mc.minigame.customenemies.CustomSkeleton;
-import com.professoreno.mc.minigame.customenemies.CustomWither;
-import net.md_5.bungee.api.ChatMessageType;
-import net.md_5.bungee.api.chat.TextComponent;
-import net.minecraft.server.level.ServerLevel;
-import org.bukkit.Location;
-import org.bukkit.Material;
-import org.bukkit.craftbukkit.v1_19_R2.CraftWorld;
-import org.bukkit.entity.Entity;
-import org.bukkit.entity.LivingEntity;
+import com.professoreno.mc.minigame.utilities.customplayers.CustomPlayer;
+import org.bukkit.craftbukkit.v1_19_R2.entity.CraftPlayer;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
-import org.bukkit.inventory.ItemStack;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 import org.bukkit.scheduler.BukkitRunnable;
 
+import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Map;
 
 
-public class Events extends BukkitRunnable implements Listener {
-    // hashMap for our custom player health,
-    private static HashMap<Player, Integer> pHealth = new HashMap<>();
-
-    /*public static HashMap<Player, Integer> getpHealth() {
-        return pHealth;
+public class Events implements Listener {
+    public static HashMap<Player, CustomPlayer> customPlayers = new HashMap<Player, CustomPlayer>();
+    @EventHandler
+    private static void test(PlayerJoinEvent event) {
+        System.out.println(event.getPlayer());
     }
-     */
 
     @EventHandler
     public void healthSetup(PlayerJoinEvent event) {
         Player player = event.getPlayer();
+        CustomPlayer cPlayer = new CustomPlayer(player);
+        net.minecraft.world.entity.player.Player nmsPlayer = ((CraftPlayer) player).getHandle();
+        System.out.println(nmsPlayer.getId());
+        customPlayers.put(player, cPlayer);
         // places 1000 health into hashmap meant for player health
-        pHealth.put(player, 1000);
         // gets player health and shows it above action bar
-        player.spigot().sendMessage(ChatMessageType.ACTION_BAR, new TextComponent(pHealth.get(player) + " / 1000"));
         PotionEffect p = new PotionEffect(PotionEffectType.DAMAGE_RESISTANCE, 1000000, 200, false, false);
         player.addPotionEffect(p);
+    }
 
         // Most of the stuff commented out below has been moved to SpawnForTesting for now
         // these are required to spawn entity, just gets player world and casts to craftbukkit ServerLevel
@@ -110,32 +102,14 @@ public class Events extends BukkitRunnable implements Listener {
 //            bEntity.setCustomName("§cCustomNameHere");
 //            wrld.tryAddFreshEntityWithPassengers(skeletonEntity);
 //        }
-    }
+
     // removes from hashmap after player leaves
 
     @EventHandler
     public void healthUnSetup(PlayerQuitEvent event) {
         Player player = event.getPlayer();
-        pHealth.remove(player);
+        customPlayers.remove(player);
     }
-// runnable is in events, because it probably solves some issues, for instance no need to import Events to other classes
-// that need to access pHealth, and pHealth can be private
-    public void run() {
-        //HashMap<Player, Integer> people = Events.getpHealth();
-        // gets players in hashmap, and sends textcomponent for actionbar display
-        // this runnable is called in main where it repeats every 20 ticks
-        for (Map.Entry<Player, Integer> element : pHealth.entrySet()) {
-            Player player = element.getKey();
-            Integer health = pHealth.get(player);
-            player.spigot().sendMessage(ChatMessageType.ACTION_BAR, new TextComponent(health + " / 1000"));
-            // replaced with math ceiling since stuff like 1/50 would return 0 and kill the player, causing them to respawn if they were quick enough
-            // or cause a visual bug
-            // the extra set of parenthesis after Math.ceil is necessary, or it would apply meth ceil to health then divide by 50
-            // at least I'm pretty sure I haven't tested
-            player.setHealth(Math.ceil(( (double) health / 50) ));
-        }
-    }
-
 }
 
 

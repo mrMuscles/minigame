@@ -3,6 +3,12 @@ version: '${project.version}'
 main: com.professoreno.mc.minigame.Minigame
 api-version: 1.19
 commands:
-  minigamespawn:
+  ms:
     description: spawns custom entities
-    usage: /minigamespawn [customentity] [amount]
+    usage: /ms [customentity] [amount]
+  k:
+    description: kills all but player
+    usage: /k
+  c:
+    description: controls wither
+    usage: /c [index] [method] [args]
