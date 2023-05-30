@@ -14,12 +14,13 @@ import net.minecraft.world.entity.ai.goal.*;
 import net.minecraft.world.entity.ai.goal.target.HurtByTargetGoal;
 import net.minecraft.world.entity.ai.goal.target.NearestAttackableTargetGoal;
 import net.minecraft.world.entity.boss.wither.WitherBoss;
+import net.minecraft.world.entity.decoration.ArmorStand;
+import net.minecraft.world.entity.monster.Monster;
 import net.minecraft.world.entity.player.Player;
 import org.bukkit.Location;
 import org.bukkit.craftbukkit.v1_19_R2.CraftWorld;
 
 import java.util.EnumSet;
-import java.util.List;
 import java.util.function.Predicate;
 
 public class CustomWither extends WitherBoss {
@@ -38,8 +39,7 @@ public class CustomWither extends WitherBoss {
         DATA_TARGETS = ImmutableList.of(DATA_TARGET_A, DATA_TARGET_B, DATA_TARGET_C);
         DATA_ID_INV = SynchedEntityData.defineId(CustomWither.class, EntityDataSerializers.INT);
     }
-
-
+  
     public CustomWither(Location loc) {
         super(EntityType.WITHER, ((CraftWorld) loc.getWorld()).getHandle());
         this.setPos(loc.getX(), loc.getY(), loc.getZ());
@@ -90,7 +90,7 @@ public class CustomWither extends WitherBoss {
     public int getAlternativeTarget(int i) {
         return (Integer)this.entityData.get((EntityDataAccessor)DATA_TARGETS.get(i));
     }
-
+  
     private static final Predicate<LivingEntity> LIVING_ENTITY_SELECTOR = entityliving -> entityliving.getMobType() != MobType.UNDEAD
             && entityliving.attackable();
 
@@ -168,4 +168,3 @@ public class CustomWither extends WitherBoss {
 
 
 }
-

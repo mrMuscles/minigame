@@ -7,5 +7,4 @@ public class FastRangedAttackGoal extends RangedAttackGoal {
     public FastRangedAttackGoal(RangedAttackMob var0, double var1, int var3, float var4) {
         super(var0, var1, var3, var4);
     }
-
 }

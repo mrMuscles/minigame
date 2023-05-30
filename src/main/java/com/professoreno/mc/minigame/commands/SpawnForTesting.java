@@ -45,7 +45,6 @@ public class SpawnForTesting implements TabExecutor {
                     return false;
                 }
 
-
                 if (amount > 1000) {
                     // no reason ever during testing should we go above this
                     return false;
@@ -54,6 +53,7 @@ public class SpawnForTesting implements TabExecutor {
                     // no reason to call with amount of zero or below
                     return false;
                 }
+
                 new SpawnEntity(player, entity, amount);
                 return true;
                 }

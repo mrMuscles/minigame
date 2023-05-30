@@ -15,6 +15,7 @@ import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
 import org.bukkit.event.entity.CreatureSpawnEvent;
 import org.bukkit.inventory.ItemStack;
+
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 
@@ -25,6 +26,7 @@ public class SpawnEntity {
     int amount;
     String entity;
     PotionEffect potionEffect = new PotionEffect(PotionEffectType.INVISIBILITY, 1000000000, 1, false, false);
+
     public SpawnEntity(Player player, String entity, int amount){
         this.wrld = ((CraftWorld) player.getWorld()).getHandle();
         // clone to get rid of possible unintended behaviour
@@ -40,8 +42,6 @@ public class SpawnEntity {
         this.entity = entity;
         spawnAmount();
     }
-
-
 
     private void spawnAmount(){
         switch(this.entity) {
